@@ -5,7 +5,7 @@ import org.junit.Assert.assertThat
 import org.junit.Test
 import java.math.BigInteger
 
-class Euler8KtTest {
+class Euler8Test {
 
     @Test
     fun `productOf 12345`() {

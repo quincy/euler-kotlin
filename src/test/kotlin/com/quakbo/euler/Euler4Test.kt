@@ -4,7 +4,7 @@ import org.hamcrest.CoreMatchers
 import org.junit.Assert.assertThat
 import org.junit.Test
 
-class Euler4KtTest {
+class Euler4Test {
 
     @Test
     fun `isPalindrome passes palindromes`() {

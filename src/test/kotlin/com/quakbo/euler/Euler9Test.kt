@@ -5,7 +5,7 @@ import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
-class Euler9KtTest {
+class Euler9Test {
 
     @Test
     fun `valid triple satisfy requirements`() {
