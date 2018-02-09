@@ -14,13 +14,13 @@ Hence the difference between the sum of the squares of the first ten natural num
 Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  */
 
-fun sumOfSquares(sequence: Sequence<Int>): Int {
+private fun sumOfSquares(sequence: Sequence<Int>): Int {
     return sequence
             .map { it * it }
             .sum()
 }
 
-fun squareOfSums(sequence: Sequence<Int>): Int {
+private fun squareOfSums(sequence: Sequence<Int>): Int {
     val sum = sequence.sum()
     return sum * sum
 }
@@ -29,3 +29,7 @@ fun main(args: Array<String>) {
     val firstHundred = generateSequence(1, {i -> i + 1} ).take(100)
     println(squareOfSums(firstHundred) - sumOfSquares(firstHundred))
 }
+
+/*
+Sequences are a lot like Streams, but you can consume them as many times as you like.  *hold for applause*
+ */

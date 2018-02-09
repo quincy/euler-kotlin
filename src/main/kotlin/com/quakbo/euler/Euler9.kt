@@ -18,7 +18,7 @@ According to Wikipedia, every Pythagorean triplet is expressed by
     and m and n are coprime
     and m and n are both not odd
 
-So a brute force approach is to increment m and n one at a time and find a, b, and c.
+So an intelligent brute force approach is to increment m and n one at a time and find a, b, and c.
 */
 
 fun main(args: Array<String>) {
@@ -39,7 +39,7 @@ fun main(args: Array<String>) {
     println("No pythagorean triplets found which sum to 1000.")
 }
 
-fun createPythagoreanTriplet(m: Long, n: Long): Triple<Long, Long, Long>? {
+internal fun createPythagoreanTriplet(m: Long, n: Long): Triple<Long, Long, Long>? {
     if (m <= n || m < 1) {
         return null
     }
@@ -59,12 +59,12 @@ fun createPythagoreanTriplet(m: Long, n: Long): Triple<Long, Long, Long>? {
     return Triple(a, b, c)
 }
 
-fun isOdd(i: Long): Boolean {
+private fun isOdd(i: Long): Boolean {
     return i % 2L != 0L
 }
 
 /** Return true if the greatest common divisor of m and n is 1. */
-fun coprime(m: Long, n: Long): Boolean {
+private fun coprime(m: Long, n: Long): Boolean {
     var gcd = 1
     var i = 1
 

@@ -7,7 +7,7 @@ What is the largest prime factor of the number 600851475143 ?
  */
 
 fun main(args: Array<String>) {
-    var num = 600851475143L
+    var num = 600_851_475_143L
 
     var i = 2L
     while (num > 1) {

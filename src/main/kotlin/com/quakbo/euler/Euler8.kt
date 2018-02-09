@@ -72,9 +72,9 @@ fun main(args: Array<String>) {
     println("Digits $maxDigits has largest product $maxProduct")
 }
 
-data class Result(val product: BigInteger, val digits: String)
+internal data class Result(val product: BigInteger, val digits: String)
 
-fun productOf(s: String): Result {
+internal fun productOf(s: String): Result {
     val product = s.toCharArray()
             .map { c -> BigInteger(c.toString()) }
             .reduce({ a, b -> a * b })
@@ -82,3 +82,40 @@ fun productOf(s: String): Result {
     return Result(product, s)
 }
 
+/*
+Multiline strings can be produced with triple quotes.  *hold for applause*
+
+But what do we do about the indentation in the string?  Kotlin gives us lots of ways to deal with that.  I chose to simply remove all of the whitespace because
+I can't have the newlines either.
+
+BigInteger is the java.math.BigInteger class.  As you can see java interoperation is pretty seamless.
+
+Take note of line 79 and 82
+
+    .map { c -> BigInteger(c.toString()) }
+    ...
+    return Result(product, s)
+
+There is no `new` keyword in kotlin.  You call constructors like any other function.
+
+What is the Result class?  Kotlin doesn't have multiple return values.  But it makes up for that with something called destructuring.
+
+On line 61 we call productOf() which returns a Result.  Result is a special class called a data class.  When you declare a class as data, it automatically
+creates special functions component1(), component2(), ..., componentN() for each of the fields of the class in the order they are defined.  The assignment on
+line 61 deconstructs the Result object into the first two components by calling these methods.
+
+    val (product, digits) = productOf(number.slice(begin..end))
+
+You have to put the variables in order in the destructuring declaration, but you can use the underscore identifier to skip values you don't want.
+
+    val (_, digits) = productOf(number.slice(begin..end))
+
+String Interpolation
+
+What is going on with line 72?
+
+    println("Digits $maxDigits has largest product $maxProduct")
+
+Kotlin allows variable interpolation in strings similar to what you get in languages like bash, perl, and python.  You can put any expression which can resolve
+to a string inside ${expression} and the expression will be replaced with the resulting value.  For simple variable interpolation you can leave off the curlies.
+ */
