@@ -67,7 +67,7 @@ class Grid(private val grid: Array<IntArray>) {
 }
 
 /*
-Arrays and all collections use implement get and set functions for interacting with their elements.  But you can use the index operator ([]) instead.
+Arrays and all collections implement get and set functions for interacting with their elements.  But you can use the index operator ([]) instead.
 
     a[i] 	                a.get(i)
     a[i, j] 	            a.get(i, j)
