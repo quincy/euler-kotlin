@@ -42,46 +42,19 @@ class Grid(private val grid: Array<IntArray>) {
 
     private fun getProductsAt(r: Int, c: Int, count: Int): List<Int> {
         return listOf(
-                calculateRightProduct(r, c, count),
-                calculateDownRightProduct(r, c, count),
-                calculateDownProduct(r, c, count),
-                calculateDownLeftProduct(r, c, count),
-                calculateLeftProduct(r, c, count),
-                calculateUpLeftProduct(r, c, count),
-                calculateUpProduct(r, c, count),
-                calculateUpRightProduct(r, c, count))
+                calculateProduct(r, c, count, { Pair(it.first - 1, it.second - 1) }), // up and left
+                calculateProduct(r, c, count, { Pair(it.first - 1, it.second + 1) }), // up and right
+                calculateProduct(r, c, count, { Pair(it.first - 1, it.second) }),   // up
+                calculateProduct(r, c, count, { Pair(it.first, it.second + 1) }))   // right
     }
 
-    private fun calculateUpRightProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row - 1, col + 1) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateUpProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row - 1, col) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateUpLeftProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row - 1, col - 1) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateLeftProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row, col - 1) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateDownLeftProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row + 1, col - 1) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateDownProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row + 1, col) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateDownRightProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row + 1, col + 1) }).take(count).reduce({ a, b -> a * b })
-    }
-
-    private fun calculateRightProduct(row: Int, col: Int, count: Int): Int {
-        return generateSequence(getVal(row, col), { getVal(row, col + 1) }).take(count).reduce({ a, b -> a * b })
+    private fun calculateProduct(row: Int, col: Int, count: Int, directionFunc: (Pair<Int, Int>) -> Pair<Int, Int>): Int {
+        return generateSequence(Pair(row, col), directionFunc)
+                .map {
+                    getVal(it.first, it.second)
+                }
+                .take(count)
+                .reduce({ a, b -> a * b })
     }
 
     private fun getVal(row: Int, col: Int): Int {
