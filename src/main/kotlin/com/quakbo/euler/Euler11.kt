@@ -44,8 +44,8 @@ class Grid(private val grid: Array<IntArray>) {
         return listOf(
                 calculateProduct(r, c, count, { Pair(it.first - 1, it.second - 1) }), // up and left
                 calculateProduct(r, c, count, { Pair(it.first - 1, it.second + 1) }), // up and right
-                calculateProduct(r, c, count, { Pair(it.first - 1, it.second) }),   // up
-                calculateProduct(r, c, count, { Pair(it.first, it.second + 1) }))   // right
+                calculateProduct(r, c, count, { Pair(it.first - 1, it.second) }),     // up
+                calculateProduct(r, c, count, { Pair(it.first, it.second + 1) }))     // right
     }
 
     private fun calculateProduct(row: Int, col: Int, count: Int, directionFunc: (Pair<Int, Int>) -> Pair<Int, Int>): Int {
@@ -65,3 +65,19 @@ class Grid(private val grid: Array<IntArray>) {
         }
     }
 }
+
+/*
+Arrays and all collections use implement get and set functions for interacting with their elements.  But you can use the index operator ([]) instead.
+
+    a[i] 	                a.get(i)
+    a[i, j] 	            a.get(i, j)
+    a[i_1, ..., i_n] 	    a.get(i_1, ..., i_n)
+    a[i] = b 	            a.set(i, b)
+    a[i, j] = b 	        a.set(i, j, b)
+    a[i_1, ..., i_n] = b 	a.set(i_1, ..., i_n, b)
+
+Line 51 has a parameter with type Pair<Int, Int>) -> Pair<Int, Int>.  This is equivalent to Function<Pair<Integer, Integer>, Pair<Integer, Integer>> in Java
+
+try/catch is an expression in Kotlin, meaning it could evaluate to a value.  The getVal function takes advantage of this by "lifting" the return statement out
+of the try/catch.
+ */
