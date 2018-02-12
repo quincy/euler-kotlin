@@ -42,4 +42,26 @@ Structural equality is == (double equals) and !=.  This is calling .equals under
     i.e., if a is not null, it calls the equals(Any?) function, otherwise (i.e. a is null) it checks that b is referentially equal to null.
 
 Referential equality is === (triple equals) and !==.  Evaluates to true iff the two operands evaluate to the same object.
+
+Nullability is easier to deal with in Kotlin.  For instance, as soon as you null-check a variable, subsequent access of that variable is automatically cast to
+the correct type after the check.
+
+    val foo: String? = getNullableString()
+    if (foo == null) {
+        println("Crap, it was null")
+    }
+
+    println("The string said, $foo")
+
+This happens when type checking too.
+
+    fun getStringLength(obj: Any): Int? {
+        if (obj is String) {
+            // `obj` is automatically cast to `String` in this branch.
+            return obj.length
+        }
+
+        // `obj` is still of type `Any` outside of the type-checked branch
+        return null
+    }
  */

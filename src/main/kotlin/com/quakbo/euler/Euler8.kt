@@ -110,6 +110,12 @@ You have to put the variables in order in the destructuring declaration, but you
 
     val (_, digits) = productOf(number.slice(begin..end))
 
+This is useful for iterating over a map too.
+
+    for ((k, v) in map) {
+        println("$k -> $v")
+    }
+
 String Interpolation
 
 What is going on with line 72?

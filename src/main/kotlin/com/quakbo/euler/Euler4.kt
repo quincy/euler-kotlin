@@ -50,4 +50,8 @@ There are implicit labels for loop constructs.  So you can do things like this..
             if (foo == 2) { continue@while }
         }
     }
+
+If blocks are known as conditional expressions because they return a value.  So you are allowed to assign from them.
+
+fun maxOf(a: Int, b: Int) = if (a > b) a else b
  */

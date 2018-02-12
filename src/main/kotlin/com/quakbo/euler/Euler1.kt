@@ -13,6 +13,10 @@ fun main(args: Array<String>) {
 }
 
 /*
+Packages and imports work just like Java.
+
+Directories do not have to match package names.  Source files can be placed arbitrarily in the file system.
+
 Functions can be declared at the package level with no class associated with it.
     (1..999)                        Generates a Range containing the values [1, 999]
 
@@ -24,4 +28,8 @@ Functions can be declared at the package level with no class associated with it.
     .sum()                          Sum all of the values in the List and return the result
 
     println()                       Just like System.out.println() but far more powerful...
+
+    /*
+    This is a nested block comment.
+     */
  */
